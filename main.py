@@ -1,10 +1,8 @@
 # Brainf*ck interpreter
-print("Brainfuck interpreter")
-print("(c) Rahul Wavare 2022")
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("filename", help="Brainfuck file to interpret")
+parser.add_argument("filename", help="Brainfuck file to run")
 args = parser.parse_args()
 
 
@@ -12,8 +10,6 @@ def isascii(s):
     """Check if the characters in string s are in ASCII, U+0-U+7F."""
     return len(s) == len(s.encode())
 
-
-print(f"Reading program... ({args.filename})")
 try:
     with open(args.filename) as f:
         program = f.read()
@@ -23,7 +19,6 @@ except:
 inst_pointer = 0
 mem_bytes = 30000
 
-print(f"Initializing memory... ({mem_bytes} bytes) \n")
 array = [0 for _ in range(mem_bytes)]
 pointer = 0
 
