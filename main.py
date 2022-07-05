@@ -1,13 +1,15 @@
 # Brainf*ck interpreter
 import argparse
 
-MEM_BYTES = 30000
-
 parser = argparse.ArgumentParser()
 parser.add_argument("filename", help="Brainfuck file to run")
+parser.add_argument("-m", "--memory", help="memory size (bytes)", type=int)
 args = parser.parse_args()
 
-
+if args.memory:
+    MEM_BYTES = args.memory
+else:
+    MEM_BYTES = 30000
 def isascii(s):
     """Check if the characters in string s are in ASCII, U+0-U+7F."""
     return len(s) == len(s.encode())
