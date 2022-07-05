@@ -1,6 +1,8 @@
 # Brainf*ck interpreter
 import argparse
 
+MEM_BYTES = 30000
+
 parser = argparse.ArgumentParser()
 parser.add_argument("filename", help="Brainfuck file to run")
 args = parser.parse_args()
@@ -17,9 +19,8 @@ except:
     print("error opening file")
     quit()
 inst_pointer = 0
-mem_bytes = 30000
 
-array = [0 for _ in range(mem_bytes)]
+array = [0 for _ in range(MEM_BYTES)]
 pointer = 0
 
 while True:
@@ -27,12 +28,12 @@ while True:
     # print(f"instruction: {i}, char {inst_pointer}, current cell value: {array[pointer]}")
     if i == ">":
         pointer += 1
-        if pointer > mem_bytes - 1:
-            pointer -= mem_bytes
+        if pointer > MEM_BYTES - 1:
+            pointer -= MEM_BYTES
     elif i == "<":
         pointer -= 1
         if pointer < 0:
-            pointer += mem_bytes
+            pointer += MEM_BYTES
     elif i == "+":
         array[pointer] += 1
         if array[pointer] > 255:
